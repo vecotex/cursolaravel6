@@ -21,7 +21,7 @@ class ClientController extends Controller
     }
     public function store (Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         return $this->repository->create($request->all());
     }
     public function show ($id)
