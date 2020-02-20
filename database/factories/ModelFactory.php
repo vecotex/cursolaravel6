@@ -2,10 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use CodeProject\Entities\User;
+
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 use CodeProject\Entities\Client;
+use CodeProject\Entities\User;
+use CodeProject\Entities\Project;
 
 
 /*
@@ -38,5 +40,17 @@ $factory->define(Client::class, function (Faker $faker) {
         'address' => $faker ->address,
         'obs' => $faker ->sentence
         
+    ];
+});
+
+$factory->define(Project::class, function (Faker $faker) {
+    return [
+        'owner_id' => rand(1,10),
+        'client_id' => rand(1,10),
+        'name' => $faker->word,
+        'description' => $faker ->sentence,
+        'progress' => rand(1,100),
+        'status' => $faker ->rand(1,3),
+        'due_date' => $faker->dateTime('now')        
     ];
 });
