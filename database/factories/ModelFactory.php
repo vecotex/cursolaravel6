@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use CodeProject\Entities\Client;
 use CodeProject\Entities\User;
 use CodeProject\Entities\Project;
+use CodeProject\Entities\ProjectNote;
 
 
 /*
@@ -43,14 +44,26 @@ $factory->define(Client::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Project::class, function (Faker $faker) {
-    return [
-        'owner_id' => rand(1,10),
-        'client_id' => rand(1,10),
+$factory->define(Project::class, function (Faker $faker)
+{
+    return
+    [
+        'owner_id' => rand (1,10),
+        'client_id' => rand (1,10),
         'name' => $faker->word,
         'description' => $faker ->sentence,
         'progress' => rand(1,100),
-        'status' => $faker ->rand(1,3),
-        'due_date' => $faker->dateTime('now')        
+        'status' => rand(1,3),
+        'due_date' => $faker->dateTime('now')      
+    ];
+});
+
+$factory->define(ProjectNote::class, function (Faker $faker)
+{
+    return
+    [
+        'project_id' => rand (1,10),
+        'title' => $faker->word,
+        'note' => $faker->paragraph       
     ];
 });
