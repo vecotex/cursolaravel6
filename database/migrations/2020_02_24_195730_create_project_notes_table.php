@@ -13,7 +13,7 @@ class CreateProjectNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects_notes', function (Blueprint $table) {
+        Schema::create('project_notes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
@@ -30,6 +30,6 @@ class CreateProjectNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects_notes');
+        Schema::dropIfExists('project_notes');
     }
 }

@@ -7,6 +7,8 @@ use \CodeProject\Repositories\ClientRepository;
 use \CodeProject\Repositories\ClientRepositoryEloquent;
 use \CodeProject\Repositories\ProjectRepository;
 use \CodeProject\Repositories\ProjectRepositoryEloquent;
+use \CodeProject\Repositories\ProjectNoteRepository;
+use \CodeProject\Repositories\ProjectNoteRepositoryEloquent;
 
 class CodeProjectRepositoryProvider extends ServiceProvider
 {
@@ -25,6 +27,10 @@ class CodeProjectRepositoryProvider extends ServiceProvider
         $this->app->bind(
             ProjectRepository::class,
             ProjectRepositoryEloquent::class
+        );
+        $this->app->bind(
+            ProjectNoteRepository::class,
+            ProjectNoteRepositoryEloquent::class
         );
     }
 
