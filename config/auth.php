@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => CodeProject\User::class,
+            'model' => CodeProject\Entities\User::class,
         ],
 
         // 'users' => [
@@ -112,6 +112,21 @@ return [
     |
     */
 
+    //Implementado por JWT
     'password_timeout' => 10800,
+
+    'defaults' => [
+        'guard' => 'api',
+        'passwords' => 'users',
+    ],
+    
+
+    
+    'guards' => [
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
+    ],
 
 ];

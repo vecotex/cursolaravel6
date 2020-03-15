@@ -12,6 +12,7 @@
 */
 
 use CodeProject\Http\Controllers\ClientController;
+use CodeProject\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,3 +35,17 @@ Route::post('project', 'ProjectController@store');
 Route::get('project/{id}', 'ProjectController@show');
 Route::delete('project/{id}', 'ProjectController@destroy');
 Route::put('project/{id}', 'ProjectController@update');
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});
