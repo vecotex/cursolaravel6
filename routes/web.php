@@ -10,9 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+namespace CodeProject\app\Http\Controllers;
 
-use CodeProject\Http\Controllers\ClientController;
-use CodeProject\Http\Controllers\AuthController;
+use CodeProject\app\Http\Controllers\ClientController;
+use CodeProject\app\Http\Controllers\AuthController;
+use CodeProject\app\Http\Controllers\Controller;
+//use CodeProject\app\Http\Controllers\Controller\Route;
 
 Route::get('/', function () {
     return view('welcome');
