@@ -1,12 +1,12 @@
 <?php
 
-namespace CodeProject\app\Http\Controllers;
+namespace CodeProject\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 
 use Illuminate\Support\Facades\Auth;
-use CodeProject\app\Http\Controllers\Controller;
+use CodeProject\Http\Controllers\Controller;
 
 
 
