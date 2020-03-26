@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-namespace CodeProject\Http\Controllers;
+//namespace CodeProject\Http\Controllers;
 
 use CodeProject\Http\Controllers\ClientController;
 use CodeProject\Http\Controllers\AuthController;
@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('client', 'ClientController@index');
+Route::get('client', ['middlewre'=>'api','uses'=>'ClientController@index']);
 Route::post('client', 'ClientController@store');
 Route::get('client/{id}', 'ClientController@show');
 Route::delete('client/{id}', 'ClientController@destroy');
