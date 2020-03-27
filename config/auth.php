@@ -40,11 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+        //Implementação do Luiz Carlos
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+            'driver' => 'jwt',
+            'provider' => 'users'
+            //'hash' => false,
         ],
     ],
 
@@ -121,12 +121,13 @@ return [
     ],
     
 
-    
+    /*
     'guards' => [
         'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
     ],
+    */ 
 
 ];
