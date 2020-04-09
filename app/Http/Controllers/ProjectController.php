@@ -29,6 +29,7 @@ class ProjectController extends Controller
     }
     public function show ($id)
     {
+        //return ['userId'=>Authorizer::getResourceOwnerId()];
         return $this->repository->find($id);
         //return Client::find($id);
     }
