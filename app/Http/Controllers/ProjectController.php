@@ -28,8 +28,7 @@ class ProjectController extends Controller
         return $this->service->create($request->all());
     }
     public function show ($id)
-    {
-        //return ['userId'=>Authorizer::getResourceOwnerId()];
+    {                
         return $this->repository->find($id);
         //return Client::find($id);
     }

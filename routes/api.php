@@ -36,18 +36,16 @@ Route::group(
         Route::post('me', 'AuthController@me');
 
         Route::resource('client', 'ClientController', ['except' => ['create', 'edit']]);
-        /* Substituído pela linha acima
-        Route::get('client', ['middleware'=>'api','uses'=>'ClientController@index']);
-        Route::post('client', 'ClientController@store');
-        Route::get('client/{id}', 'ClientController@show');
-        Route::delete('client/{id}', 'ClientController@destroy');
-        Route::put('client/{id}', 'ClientController@update');
-        */
+        
+        Route::group(['middleware'=>'CheckProjectOwner'], function (){
+            Route::resource('Project', 'ProjectController', ['except' => ['create', 'edit']]);
+        });
+        
+        //Route::resource('Project', 'ProjectController', ['except' => ['create', 'edit']]);
 
         Route::group(
             ['prefix' => 'project'], function () {
-                Route::resource('', 'ProjectController', ['except' => ['create', 'edit']]);
-
+             
                 Route::get('ProjectController@index');
                 Route::post('ProjectController@store');
                 Route::get('{id}', 'ProjectController@show');
@@ -55,6 +53,14 @@ Route::group(
                 Route::put('/{id}', 'ProjectController@update');
             }
         );
+
+        /* Substituído pela linha acima
+        Route::get('client', ['middleware'=>'api','uses'=>'ClientController@index']);
+        Route::post('client', 'ClientController@store');
+        Route::get('client/{id}', 'ClientController@show');
+        Route::delete('client/{id}', 'ClientController@destroy');
+        Route::put('client/{id}', 'ClientController@update');
+        */
         /* Substituído pelas 2 linhas acima
         Route::get('project/{id}/note', 'ProjectNoteController@index');
         Route::post('project/{id}/note', 'ProjectNoteController@store');
