@@ -8,7 +8,9 @@ use CodeProject\Repositories\ProjectRepository;
 use CodeProject\Services\ProjectService;
 use CodeProject\Validators\ProjectValidator;
 
-class ProjectController extends Controller
+
+
+class ProjectFileController extends Controller
 {
     private $repository;
     private $service;
@@ -25,8 +27,21 @@ class ProjectController extends Controller
     }
     public function store (Request $request)
     {
-        //dd($request->all());
-        return $this->service->create($request->all());
+       $file = $request->file('file');
+       $extension = $file->getClientOriginalExtension();
+
+       $data['file'] = $file;
+       $data['extension'] = $extension;
+       $data['name'] = $request->name;
+       $data['project_id'] = $request->project_id;
+       $date['description'] = $request->description;
+
+       $this->service->createFile($data);
+
+       //Storage::put($request->name ."." . $extension, File::get($file));       
+       //echo $request->name;die;
+
+       
     }
     public function show ($id)
     {             

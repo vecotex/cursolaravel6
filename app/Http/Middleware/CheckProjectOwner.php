@@ -3,6 +3,8 @@
 namespace CodeProject\Http\Middleware;
 
 use Closure;
+use CodeProject\Repositories\ProjectRepository;
+
 
 class CheckProjectOwner
 {
@@ -23,9 +25,12 @@ class CheckProjectOwner
         $userId = \Auth::guard('api')->user()->id;
         $projectId = $request->project;
 
-        if($this->repository->isOwner($projectId, $userId ) == false){
-            return ['error' => 'Access forbiden'];
+        if($this->repository->isOwner($projectId, $userId) == false){
+
+            return response()->json(['message' => 'User doesnt have access for this project'], 403);
+            //return ['error' => 'access forbidden'];
         }
+
         return $next($request);
     }
 }

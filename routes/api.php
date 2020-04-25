@@ -37,11 +37,13 @@ Route::group(
 
         Route::resource('client', 'ClientController', ['except' => ['create', 'edit']]);
         
+        /*Esta alteração se deu no capítulo AUTORIZAÇÃO - VALIDANDO NO CONTROLLER
         Route::group(['middleware'=>'CheckProjectOwner'], function (){
-            Route::resource('Project', 'ProjectController', ['except' => ['create', 'edit']]);
+            Route::resource('project', 'ProjectController', ['except' => ['create', 'edit']]);
         });
-        
-        //Route::resource('Project', 'ProjectController', ['except' => ['create', 'edit']]);
+        */
+                
+        Route::resource('project', 'ProjectController', ['except' => ['create', 'edit']]);
 
         Route::group(
             ['prefix' => 'project'], function () {
@@ -51,6 +53,8 @@ Route::group(
                 Route::get('{id}', 'ProjectController@show');
                 Route::delete('/{id}', 'ProjectController@destroy');
                 Route::put('/{id}', 'ProjectController@update');
+
+                Route::post('{id}/file', 'ProjectFileController@store');
             }
         );
 
